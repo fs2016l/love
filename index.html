@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Floating heart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 引入 Google Fonts 的艺术字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    .romantic-title {
+      font-family: 'Great Vibes', cursive; /* 使用艺术字体 */
+      text-align: center;
+      color: #FB3569; /* 字体颜色 */
+      font-size: 4em; /* 字体大小 */
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+    }
+    .timer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5em;
+      color: #FB3569;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 253, 225, 0.8);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+<div style="position: fixed; top: 10px;z-index: 99;">
+  <audio src="./js/music.mp3" autoplay="autoplay" controls></audio>
+</div>
+<div style="position: fixed; top: 200px;z-index: 99;">
+ <h1 style="font-family: 'Great Vibes', cursive; /* 使用艺术字体 */
+      text-align: center;
+      color: #FB3569; /* 字体颜色 */
+      font-size: 4em; /* 字体大小 */
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */">千言万语，无言相视，已覆水难收，我们就这样相爱一生吧</h1>
+</div>
+<div>
+  <h1 class="romantic-title">I love u</h1>
+</div>
+
+<div class="romantic-title" style="background: linear-gradient(to right,#fffde1,#51eaea);">
+  <h1 style="font-size: x-large;">
+    在朝阳与时光交汇的此刻，2025年3月7日，我以最虔诚的姿态在你面前。
+  </h1>
+  <h1 style="font-size: x-large;">
+    这不是突如其来的心动，而是岁月沉淀后依然澎湃的潮声。
+  </h1>
+  <h1 style="font-size: x-large;">
+    请允许我郑重地开启这份珍藏已久的心意：
+  </h1>
+  <h1 style="font-size: x-large;">
+    你的眼眸是我见过最温柔的宇宙，我愿用余生去解读其中闪烁的星语。
+  </h1>
+  <h1 style="font-size: x-large;">
+    今日此时，天地为鉴，此情郑重如青铜器上镌刻的铭文，纵使千年风霜亦不改其纹
+  </h1>
+  <h1 style="font-size: x-large;">
+    一路有晨，我喜欢你！
+  </h1>
+</div>
+<div class="timer">
+  深情陪伴：<span id="timer"></span>
+</div>
+<style>
+  css-doodle {
+    --color: @p(#51eaea, #fffde1, #ff9d76, #FB3569);
+
+    --rule: (
+      :doodle {
+        @grid: 30x1 / 18vmin;
+        --deg: @p(-180deg, 180deg);
+      }
+      :container {
+        perspective: 30vmin;
+      }
+      :after, :before {
+        content: '';
+        background: var(--color);
+        @place-cell: @r(100%) @r(100%);
+        @size: @r(6px);
+        @shape: heart;
+      }
+
+      @place-cell: center;
+      @size: 100%;
+
+      box-shadow: @m(2, (0 0 50px var(--color)));
+      background: @m(100, (
+        radial-gradient(var(--color) 50%, transparent 0)
+        @r(-20%, 120%) @r(-20%, 100%) / 1px 1px
+        no-repeat
+      ));
+
+      will-change: transform, opacity;
+      animation: scale-up 12s linear infinite;
+      animation-delay: calc(-12s / @size() * @i());
+
+      @keyframes scale-up {
+        0%, 95.01%, 100% {
+          transform: translateZ(0) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        95% {
+          transform:
+            translateZ(35vmin) rotateZ(@var(--deg));
+        }
+      }
+    )
+  }
+</style>
+
+<css-doodle use="var(--rule)"></css-doodle>
+
+<script src='js/css-doodle.min.js'></script>
+<script>
+  // 设置目标日期为 2025 年 1 月 17 日
+  const targetDate = new Date('2025-01-17T11:10:00');
+
+  // 更新计时器
+  function updateTimer() {
+    const now = new Date();
+    const diff = now - targetDate; // 时间差（毫秒）
+
+    // 计算天数、小时、分钟和秒
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // 显示计时器
+    document.getElementById('timer').innerText =
+      `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+  }
+
+  // 每秒更新一次计时器
+  setInterval(updateTimer, 1000);
+  updateTimer(); // 初始化计时器
+</script>
+</body>
+</html>
